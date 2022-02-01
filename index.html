@@ -1,53 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
  <head>
-     <title>title goes here</title>
+     <title>Dom-Play</title>
   <meta charset="utf-8" />
   <meta name="robots" content="noindex,nofollow" />
   <meta name="viewport" content="width=device-width" />
   <link rel="stylesheet" href="css/main.css" />
   <link rel="stylesheet" href="css/nav.css" />
-  <link rel="stylesheet" href="css/forms.css" />
-  <script src="js/main.js"></script>
- </head>
+<style>
+    /*
+    div#play span{
+        background-color:yellow;
+    }
+    */
+
+</style> 
+</head>
  <body>
      <header>
-     <h1>title goes here</h1>
-        <nav class="topnav" id="myTopnav">
-            <a href="index.html" class="active">Home</a>
-            <a href="link" target="_blank">name of link goes here</a> 
-            <a href="link" target="_blank">name of link goes here</a>
-            <a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
-        </nav>
+     <h1>Dom-Play</h1>
      </header>
       
-     <main class="wrapper">
-   
-       <h2 class="subheader">title goes here </h2>
-         <p><small>&copy; 2021 by 
+    <main class="wrapper">
+        <div id="play">
+            <h5>Act I</h5>
+         <p><span data-actor="blanche">Blanche: Rose, you can't be fashion show chairmain you thought Giorgio Armani was a puppet on Joe Sullivan</span></p>
+         <p><span data-actor="rose">Rose: Does that mean you don't think I'm smart enough for the job?</span></p>
+         <p><span data-actor="blanche">Blanche: No I think you're smart enough, I just don't think you have taste.</span></p>
+         <br>
+         <br>
+         <h5>Act II</h5>
+         <p><span data-actor="blanche">Blanche: I think I can handle this relationship with Dirk I'm going out with him Saturday night.</span></p>
+         <p><span data-actor="dorothy">Dorothy: Was there ever any doubt?</span></p>
+         <p><span data-actor="blanche">Blanche: Momentarily, this is striclty off the record but Dirk is nearly 5 younger than I am.</span></p>
+         <p><span data-actor="dorothy">Dorothy: In what, Blanche dog years?</span></p>
+         <br>
+         <br>
+         <h5>Act III</h5>
+         <p><span data-actor="sophia">Sophia: I don't like you! </span></p>
+         <p><span data-actor="rose">Rose: You just say that.</span></p>
+         <p><span data-actor="sophia">Sophia: repeatedly!</span></p>
+    
+        </div>
+     <footer>
+        <h5><i>This page uses JS, to allow a user to click on the name of an actor and highlight their lines in a play.<br>
+            This page uses data attributes and an anonymous function to look through a node list and compare data attributes to highlight or unhighlight text.</i></h5>
+       <p><small>&copy; 2021 by 
         Semhar Gezai, All Rights Reserved ~ 
         <a id="html-checker" href="#">Check HTML</a> ~ 
         <a id="css-checker" href="#">Check CSS</a></small>
         </p>
-    </footer>
-  </main>
-  <!-- Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon -->
+     </footer>
+    </main>
     <script>
-    //https://tinyurl.com/dynamic-html-checker
-    document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
-      
-    document.getElementById("css-checker").setAttribute("href","https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);  
-    
-    //manages mobile nav 
-    function myFunction() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
+   
+   const spans = document.querySelectorAll('div#play span');
+   
+   console.log(spans);
+
+    for(const mySpan of spans){
+        mySpan.addEventListener('click',function(ev){
+            //alert(mySpan.dataset.actor);
+            
+            highlightActor(mySpan.dataset.actor);
+
+        });
+    }
+
+   function myAlert(){
+       alert("I'm clicked");
+   }
+   
+   function highlightActor(actor){
+
+      for(const mySpan of spans){
+        if(actor == mySpan.dataset.actor){
+            mySpan.style.backgroundColor = "yellow"; 
+        }else{
+            mySpan.style.backgroundColor = "white";      
         }
-    }   
- </script>
-     
+      }
+    }
+        //document.querySelector('span.hamlet').style.backgroundColor = "yellow";
+    </script>
+  <script src="js/main.js"></script>   
  </body>
 </html>
